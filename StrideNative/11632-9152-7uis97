@@ -1,0 +1,4 @@
+
+          module.exports = require("/Users/JonRoby/Desktop/stride/StrideNative/node_modules/react-native/packager/react-packager/src/JSTransformer/worker.js");
+          require("/Users/JonRoby/Desktop/stride/StrideNative/node_modules/react-native/packager/transformer.js");
+          

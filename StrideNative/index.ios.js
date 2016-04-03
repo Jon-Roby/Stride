@@ -3,12 +3,12 @@ import React, {
   Component
 } from 'react-native';
 
-import App from './src/index';
+import Native from './src/index';
 
 class StrideNative extends Component {
   render() {
     return (
-      <App />
+      <Native />
     );
   }
 }

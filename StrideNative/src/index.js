@@ -1,28 +1,25 @@
 import React from 'react-native';
 import {
-  Component,
-  View,
-  Text,
-  StyleSheet
+  Component
 } from 'react-native';
 
-class App extends Component {
+import {Provider} from 'react-redux';
+import {createStore, applyMiddleware } from 'redux';
+
+import App from './app';
+import reducers from './reducers';
+
+const createStoreWithMiddleware = applyMiddleware()(createStore);
+const store = createStoreWithMiddleware(reducers);
+
+class Native extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Yo World</Text>
-      </View>
+      <Provider store={store}>
+        <App />
+      </Provider>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  }
-});
-
-export default App;
+export default Native;
