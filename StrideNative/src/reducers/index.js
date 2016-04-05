@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
+import EstimatesReducer from './reducer_estimates';
 
 const rootReducer = combineReducers({
-  state: (state = {}) => state
+  estimates: EstimatesReducer
 });
 
 export default rootReducer;
