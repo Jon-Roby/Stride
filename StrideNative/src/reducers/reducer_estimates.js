@@ -4,6 +4,7 @@ export default function(state = [], action) {
 
   switch (action.type) {
     case FETCH_ESTIMATES:
+      console.log(action);
 
       var uberCons = action.payload.uberRequest.data.prices.map((car) => {
         return {
@@ -15,7 +16,7 @@ export default function(state = [], action) {
         }
       }).sort((left, right) => { return left.minPrice - right.minPrice });
 
-      var lyftCons = action.payload.lyftRequest.cost_estimates.map((car) => {
+      var lyftCons = action.payload.lyftRequest.data.cost_estimates.map((car) => {
         return {
           company: "Lyft",
           type: car.display_name,

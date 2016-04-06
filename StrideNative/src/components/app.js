@@ -8,26 +8,31 @@ import {
 } from 'react-native';
 
 import SearchBar from '../containers/search_bar';
-//import EstimatesList from '../containers/estimates_list';
+import EstimatesList from '../containers/estimates_list';
 
 class App extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Hello World</Text>
-        <SearchBar />
-      </View>
+      <React.NavigatorIOS
+        style={styles.container}
+        initialRoute={{
+          title: 'Property Finder',
+          component: SearchBar,
+        }}/>
 
     );
   }
 }
 
-const styles = StyleSheet.create({
+var styles = React.StyleSheet.create({
+  text: {
+    color: 'black',
+    backgroundColor: 'white',
+    fontSize: 30,
+    margin: 80
+  },
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    flex: 1
   }
 });
 

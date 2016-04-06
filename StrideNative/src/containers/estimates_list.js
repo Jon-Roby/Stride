@@ -1,74 +1,46 @@
-import React, { Component } from 'react';
+import React from 'react-native';
+import {
+  Component,
+  View,
+  Text,
+  TextInput,
+  ListView,
+  ScrollView,
+  StyleSheet
+} from 'react-native';
+
 import { connect } from 'react-redux';
-
-// <tr key={estimatesData.display_name}>
-//   <td>{estimatesData.display_name}</td>
-//   <td>{estimatesData.estimate}</td>
-//   <td>{estimatesData.low_estimate}</td>
-//   <td>{estimatesData.high_estimate}</td>
-//   <td>{estimatesData.duration}</td>
-//   <td>{estimatesData.surge_multiplier}</td>
-//   <td>{estimatesData.currency_code}</td>
-// </tr>
-
-// <th>Price</th>
-// <th>Low Estimate</th>
-// <th>High Estimate</th>
-// <th>Duration</th>
-// <th>Surge Multiplier</th>
-// <th>Currency Code</th>
+import { bindActionCreators } from 'redux';
 
 class EstimatesList extends Component {
 
   renderEstimates(estimatesData) {
-    // console.log("estimatesData: ", estimatesData);
-    // console.log(estimatesData.display_name);
     return (
-      <tr key={estimatesData.type}>
-        <td>{estimatesData.company}</td>
-        <td>{estimatesData.type}</td>
-        <td>{estimatesData.minPrice}</td>
-        <td>{estimatesData.maxPrice}</td>
-        <td>{estimatesData.currency}</td>
-      </tr>
+      <View key={estimatesData.type}>
+        <Text>{estimatesData.company}</Text>
+        <Text>{estimatesData.type}</Text>
+        <Text>{estimatesData.minPrice}</Text>
+        <Text>{estimatesData.maxPrice}</Text>
+        <Text>{estimatesData.currency}</Text>
+      </View>
     )
   }
 
   render() {
-    // console.log("props: ", this.props.estimates);
+    console.log("props: ", this.props.estimates);
     return (
-      <table className="table table-hover">
-        <thead>
-          <tr>
-            <th>Company</th>
-            <th>Type</th>
-            <th>Min Price</th>
-            <th>Max Price</th>
-            <th>Currency</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {this.props.estimates.map(this.renderEstimates)}
-        </tbody>
-      </table>
+      <View style={styles.description}>
+        {this.props.estimates.map(this.renderEstimates)}
+      </View>
     )
   }
 }
 
-// function mapStateToProps(state) {
-//   // this is from reducer/index.js
-//   return { estimates: state.estimates }
-// }
-
-// Condense ->
-
-// function mapStateToProps({ estimates }) {
-//   // const estimates = state.estimates;
-//   return { estimates: estimates };
-// }
-
-// Condense ->
+var styles = StyleSheet.create({
+  description: {
+    marginTop: 100,
+  }
+});
 
 function mapStateToProps({ estimates }) {
   return { estimates }; // { estimates } === { estimates: estimates }

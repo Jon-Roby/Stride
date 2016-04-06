@@ -10,13 +10,22 @@ const LYFT_ROOT_URL = 'https://api.lyft.com/v1/cost?';
 
 export const FETCH_ESTIMATES = 'FETCH_ESTIMATES';
 
-export function fetchEstimates(sLat, sLng, eLat, eLng) {
-  let uberRequest = fetchUber(sLat, sLng, eLat, eLng);
-  let lyftRequest = fetchLyft(sLat, sLng, eLat, eLng);
+export async function fetchEstimates(sLat, sLng, eLat, eLng) {
+  try {
+    let lyftRequest = await fetchLyft(sLat, sLng, eLat, eLng);
+    let uberRequest = await fetchUber(sLat, sLng, eLat, eLng);
 
-  return {
-    type: FETCH_ESTIMATES,
-    payload: [lyftRequest]
+    return {
+      type: FETCH_ESTIMATES,
+      payload: {
+        lyftRequest: lyftRequest,
+        uberRequest: uberRequest
+      }
+    }
+
+  } catch(error) {
+    // Handle error
+    console.error(error);
   }
 }
 
